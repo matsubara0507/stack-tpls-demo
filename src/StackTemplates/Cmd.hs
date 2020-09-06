@@ -22,7 +22,7 @@ fetchTplList = do
 
 fetchTplListFromGitHub :: [Repository] -> SearchOpts -> RIO Env [Repository]
 fetchTplListFromGitHub acc opts = do
-  let query = searchQuery "stack-templates in:name" Repository opts
+  let query = searchRepositoryQuery "stack-templates in:name" opts
   logDebug $ "query: " <> display query
   resp <- GraphQL.fetch query :: RIO Env Response
   let page  = resp ^. #data ^. #search ^. #pageInfo

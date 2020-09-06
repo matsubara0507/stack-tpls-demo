@@ -20,25 +20,16 @@ type SearchResultEdge = Record
   '[ "node" >: Repository
    ]
 
-data SearchType
-  = Repository
-  | User
-  deriving (Eq)
-
-instance Show SearchType where
-  show Repository = "REPOSITORY"
-  show User       = "USER"
-
 type SearchOpts = Record
    '[ "first" >: Int
     , "after" >: Maybe Text
     ]
 
-searchQuery :: Text -> SearchType -> SearchOpts -> Text
-searchQuery query stype opts = mconcat
+searchRepositoryQuery :: Text -> SearchOpts -> Text
+searchRepositoryQuery query opts = mconcat
   [ "query{search("
   , "query:", tshow query, ","
-  , "type:", tshow stype, ","
+  , "type:REPOSITORY,"
   , toSearchArgsText opts
   , "){", Text.intercalate "," fields, "}}"
   ]
