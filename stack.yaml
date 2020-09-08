@@ -7,10 +7,11 @@ extra-deps:
 - github-0.26
 - binary-instances-1.0.0.1
 - github: matsubara0507/mix.hs
-  commit: 36e88c9a9e5122a8718c5616d6a9fdcd5b223846
+  commit: 5456458111400c1d9b27b93af6d26513ba152fa5
   subdirs:
   - mix
   - mix-plugin-github
+  - mix-plugin-xdgcache
 
 docker:
   repo: matsubara0507/stack-build

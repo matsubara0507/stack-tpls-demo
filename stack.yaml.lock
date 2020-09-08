@@ -33,31 +33,44 @@ packages:
   original:
     hackage: binary-instances-1.0.0.1
 - completed:
-    size: 8728
+    size: 11923
     subdir: mix
-    url: https://github.com/matsubara0507/mix.hs/archive/36e88c9a9e5122a8718c5616d6a9fdcd5b223846.tar.gz
+    url: https://github.com/matsubara0507/mix.hs/archive/5456458111400c1d9b27b93af6d26513ba152fa5.tar.gz
     name: mix
     version: 0.1.1
-    sha256: 858033e3cc411e393c6a1f1bf429d08aceddbc8a16d8bf9113b384f2d4c63c8a
+    sha256: f3ed52416a47ac3137979dff00360bf1e3bfbedaeafffc617830e2c72a25f1a0
     pantry-tree:
       size: 598
       sha256: 689bed307dc233a6c50e01f00295a079dc40a4291700646f3ca423d714ba35fc
   original:
     subdir: mix
-    url: https://github.com/matsubara0507/mix.hs/archive/36e88c9a9e5122a8718c5616d6a9fdcd5b223846.tar.gz
+    url: https://github.com/matsubara0507/mix.hs/archive/5456458111400c1d9b27b93af6d26513ba152fa5.tar.gz
 - completed:
-    size: 8728
+    size: 11923
     subdir: mix-plugin-github
-    url: https://github.com/matsubara0507/mix.hs/archive/36e88c9a9e5122a8718c5616d6a9fdcd5b223846.tar.gz
+    url: https://github.com/matsubara0507/mix.hs/archive/5456458111400c1d9b27b93af6d26513ba152fa5.tar.gz
     name: mix-plugin-github
-    version: 0.2.0
-    sha256: 858033e3cc411e393c6a1f1bf429d08aceddbc8a16d8bf9113b384f2d4c63c8a
+    version: 0.3.0
+    sha256: f3ed52416a47ac3137979dff00360bf1e3bfbedaeafffc617830e2c72a25f1a0
     pantry-tree:
       size: 458
-      sha256: 6061b2c82975eb396f4b717bc1b778f16e8ed4b892375cc94ca665f96c560a65
+      sha256: 1e6b6c09e62afbd5947ab33f976fb6163a12510477381554d6888adb7e1f39db
   original:
     subdir: mix-plugin-github
-    url: https://github.com/matsubara0507/mix.hs/archive/36e88c9a9e5122a8718c5616d6a9fdcd5b223846.tar.gz
+    url: https://github.com/matsubara0507/mix.hs/archive/5456458111400c1d9b27b93af6d26513ba152fa5.tar.gz
+- completed:
+    size: 11923
+    subdir: mix-plugin-xdgcache
+    url: https://github.com/matsubara0507/mix.hs/archive/5456458111400c1d9b27b93af6d26513ba152fa5.tar.gz
+    name: mix-plugin-xdgcache
+    version: 0.1.0
+    sha256: f3ed52416a47ac3137979dff00360bf1e3bfbedaeafffc617830e2c72a25f1a0
+    pantry-tree:
+      size: 341
+      sha256: fac2d5bba41110c6aceecad3d592f9757f9c9d394698779aa6404271eb5d54f6
+  original:
+    subdir: mix-plugin-xdgcache
+    url: https://github.com/matsubara0507/mix.hs/archive/5456458111400c1d9b27b93af6d26513ba152fa5.tar.gz
 snapshots:
 - completed:
     size: 532377

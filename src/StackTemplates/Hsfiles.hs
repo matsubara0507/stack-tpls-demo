@@ -1,9 +1,10 @@
 module StackTemplates.Hsfiles where
 
 import           RIO
-import qualified RIO.List                   as L
 import qualified RIO.Text                   as Text
 
+import           Data.Aeson                 (FromJSON (..), ToJSON (..))
+import qualified Data.Aeson                 as JSON
 import           Data.Extensible
 import           StackTemplates.GitHub.Data
 
@@ -24,31 +25,18 @@ instance Show Domain where
   show GitLab    = "gitlab"
   show BitBucket = "bitbucket"
 
-readMaybeDomain :: String -> Maybe Domain
-readMaybeDomain "github"    = Just GitHub
-readMaybeDomain "gitlab"    = Just GitLab
-readMaybeDomain "bitbucket" = Just BitBucket
-readMaybeDomain _           = Nothing
+instance FromJSON Domain where
+  parseJSON = JSON.withText "Domain" $ \case
+    "github"    -> pure GitHub
+    "gitlab"    -> pure GitLab
+    "bitbucket" -> pure BitBucket
+    txt         -> fail $ "expected 'github' or 'gitlab' or 'bitbucket', but '" ++ Text.unpack txt ++ "'"
+
+instance ToJSON Domain where
+  toJSON = JSON.String . tshow
 
 domains :: [Domain]
 domains = [ GitHub, GitLab, BitBucket ]
-
-readMaybeHsfiles :: String -> Maybe Hsfiles
-readMaybeHsfiles str =
-  if validateHsfiles owner name domain then Just file else Nothing
-  where
-    (domain, str') = L.span (/= ':') str
-    (owner, name)  = L.span (/= '/') str'
-    file = #name   @= fromString (dropWhile (== '/') name)
-        <: #owner  @= fromString (dropWhile (== ':') owner)
-        <: #domain @= fromMaybe GitHub (readMaybeDomain domain)
-        <: nil
-
-validateHsfiles :: String -> String -> String -> Bool
-validateHsfiles owner name domain =
-  case (owner, name) of
-    (':':_:_, '/':_:_) -> domain `elem` map show domains
-    _                  -> False
 
 fromRepository :: Domain -> Repository -> [Hsfiles]
 fromRepository domain repo = flip map files $ \file ->

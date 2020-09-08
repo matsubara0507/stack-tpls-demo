@@ -4,6 +4,8 @@ import           RIO
 
 import           Data.Extensible
 import qualified Mix.Plugin.GitHub.GraphQL   as GraphQL
+import           Mix.Plugin.XdgCache         (withCacheOn)
+import qualified Mix.Plugin.XdgCache         as MixCache
 import           StackTemplates.Env
 import           StackTemplates.GitHub.Data
 import           StackTemplates.GitHub.Query
@@ -15,8 +17,13 @@ cmd = fetchTplList
 fetchTplList :: RIO Env ()
 fetchTplList = do
   logDebug "run: fetch hsfiles"
-  tpls <- mapHsfilesWithFilter <$> fetchTplListFromGitHub [] sOpts
+  whenM (asks $ view #with_update) $ MixCache.expireCache "stack-teplates"
+  tpls <- fetchTplList' `withCacheOn` "stack-teplates"
   forM_ tpls $ \tpl -> logInfo (display $ toStackArg tpl)
+
+fetchTplList' :: RIO Env [Hsfiles]
+fetchTplList' =
+  mapHsfilesWithFilter <$> fetchTplListFromGitHub [] sOpts
   where
     sOpts = #first @= 100 <: #after @= Nothing <: nil
 
